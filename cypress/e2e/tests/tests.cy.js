@@ -16,7 +16,7 @@ const getIframeBody = (selector) => {
 
 describe("Main testSuite", () => {
   beforeEach(() => {
-    cy.visit(data.baseUrl);
+    cy.visit('/');
   });
 
   it("Home Section Test", () => {
@@ -53,16 +53,22 @@ describe("Main testSuite", () => {
   });
 
   it("Chat Section Test", () => {
-    cy.get('.intercom-lightweight-app-launcher').should('be.visible').click();
+    cy.get(".intercom-lightweight-app-launcher").should("be.visible").click();
     cy.wait(5000);
-    cy.get('iframe').should('exist').then($iframes => {
-      const iframe = Array.from($iframes).find(i => i.contentDocument?.body?.querySelector('button.intercom-fvqzrb.e4hvvep2'));
-      expect(iframe).to.exist;
-      cy.wrap(iframe.contentDocument.body)
-        .find('button.intercom-fvqzrb.e4hvvep2')
-        .should('be.visible')
-        .contains('Search for help')
-        .click();
-    });
+    cy.get("iframe")
+      .should("exist")
+      .then(($iframes) => {
+        const iframe = Array.from($iframes).find((i) =>
+          i.contentDocument?.body?.querySelector(
+            "button.intercom-fvqzrb.e4hvvep2"
+          )
+        );
+        expect(iframe).to.exist;
+        cy.wrap(iframe.contentDocument.body)
+          .find("button.intercom-fvqzrb.e4hvvep2")
+          .should("be.visible")
+          .contains("Search for help")
+          .click();
+      });
   });
 });

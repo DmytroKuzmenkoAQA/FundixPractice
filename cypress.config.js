@@ -1,9 +1,13 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from 'cypress';
 
-module.exports = {
+export default defineConfig({
   e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+    baseUrl: 'https://fundix.pro',
     viewportWidth: 1400,
     viewportHeight: 1200,
   },
-};
+});
 
